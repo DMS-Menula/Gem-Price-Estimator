@@ -1,4 +1,3 @@
-```markdown
 # Gem Price Estimator ✨  
 **Ultra-Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems**  
 
