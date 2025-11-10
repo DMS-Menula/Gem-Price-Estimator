@@ -1,5 +1,5 @@
 # Gem Price Estimator ✨  
-**Ultra-Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems**  
+**Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems**  
 
 Live Demo: https://gemprice.vercel.app/
 
