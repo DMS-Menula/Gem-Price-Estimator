@@ -83,7 +83,7 @@ Just add to `gemsData` object in `data.js`:
 ---
 
 ## Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/gem-price-estimator&type=Date)](https://star-history.com/#your-username/gem-price-estimator)
+[![Star History Chart](https://api.star-history.com/svg?repos=DMS-Menula/Gem-Price-Estimator&type=Date)](https://star-history.com/DMS-Menula/Gem-Price-Estimator)
 
 ---
 
