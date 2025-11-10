@@ -1,8 +1,7 @@
 # Gem Price Estimator ✨  
 **Ultra-Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems**  
 
-Live Demo: https://your-username.github.io/gem-price-estimator  
-(Replace with your actual GitHub Pages / Vercel link)
+Live Demo: https://gemprice.vercel.app/
 
 ---
 
@@ -29,8 +28,7 @@ Live Demo: https://your-username.github.io/gem-price-estimator
 ---
 
 ## Live Preview
-![Gem Price Estimator Screenshot](https://raw.githubusercontent.com/your-username/gem-price-estimator/main/screenshot.jpg)  
-*(Add a screenshot.png in your repo root and update the link above)*
+<img width="1594" height="909" alt="Gem Price Estimator Preview" src="https://github.com/user-attachments/assets/7ecd33a4-745e-4a5f-8bb0-14d1677ad732" />
 
 ---
 
