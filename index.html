@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Price Estimator - For Sri Lankan & World Gems</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1 class="title">Gem Price Estimator</h1>
+            <p class="subtitle">Realistic pricing for Sri Lankan and global gemstones. Enter details for instant estimates in USD & LKR.</p>
+            <div class="sparkles">✨</div>
+        </header>
+
+        <main class="main-content">
+            <form id="gemForm" class="estimator-form">
+                <div class="input-group">
+                    <label for="gemType">Gem Type:</label>
+                    <select id="gemType" required>
+                        <option value="">Select a Gem</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="weight">Weight (Carats):</label>
+                    <input type="number" id="weight" min="0.01" max="100" step="0.01" required>
+                    <div class="slider-container">
+                        <input type="range" id="weightSlider" min="0.01" max="100" step="0.01" value="1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="color">Color Intensity:</label>
+                    <select id="color" required>
+                        <option value="">Select Color Intensity</option>
+                        <option value="faint">Faint</option>
+                        <option value="light">Light</option>
+                        <option value="medium">Medium</option>
+                        <option value="intense">Intense</option>
+                        <option value="vivid">Vivid</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="clarity">Clarity:</label>
+                    <select id="clarity" required>
+                        <option value="">Select Clarity</option>
+                        <option value="poor">Poor</option>
+                        <option value="fair">Fair</option>
+                        <option value="good">Good</option>
+                        <option value="veryGood">Very Good</option>
+                        <option value="excellent">Excellent</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="cut">Cut Quality:</label>
+                    <select id="cut" required>
+                        <option value="">Select Cut Quality</option>
+                        <option value="poor">Poor</option>
+                        <option value="fair">Fair</option>
+                        <option value="good">Good</option>
+                        <option value="veryGood">Very Good</option>
+                        <option value="excellent">Excellent</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="usdToggle" checked> Show in USD
+                        <span class="toggle-switch"></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="calculate-btn">Estimate Price ✨</button>
+            </form>
+
+            <div id="result" class="result hidden">
+                <h2>Estimated Price Range</h2>
+                <div class="price-display">
+                    <p id="lowPrice"></p>
+                    <p id="highPrice"></p>
+                    <p id="currencyLabel"></p>
+                </div>
+                <div class="factors-info">
+                    <h3>Key Factors Considered:</h3>
+                    <ul id="factorsList"></ul>
+                </div>
+                <button id="exportBtn" class="export-btn">Export Report 📄</button>
+            </div>
+
+            <section class="education">
+                <h2>Gemstone Education</h2>
+                <p>Learn more about gems! Prices are based on 2025 market data, including Sri Lankan specialties like Padparadscha Sapphires. Note: These are estimates; consult a certified gemologist for accurate appraisals.</p>
+                <div class="gem-cards">
+                    <div class="card">
+                        <h3>Blue Sapphire (Sri Lankan)</h3>
+                        <p>Vibrant blues from Ceylon. Avg: $600-$6,500/ct depending on quality.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Padparadscha Sapphire</h3>
+                        <p>Rare pink-orange hue from Sri Lanka. Up to $30,000+/ct for premium.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Parti Sapphire</h3>
+                        <p>Multi-color zoning, Sri Lankan: $500-$5,000+/ct.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ruby</h3>
+                        <p>Intense red; prices vary widely, avg $5,000/ct for good quality.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
