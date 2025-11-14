@@ -137,7 +137,7 @@ Add to the `gemsData` object:
 
 💡 **Contributions are what make open source amazing!**
 
-If you’d like to add new gems, improve logic, or enhance UI — feel free to fork and submit a PR!
+If you’d like to add new gems, improve logic, or enhance UI feel free to fork and submit a PR!
 
 ### Steps:
 
@@ -191,6 +191,3 @@ From **Ratnapura to the World 🌍**
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=gradient&section=footer" />
 </p>
-
-Would you like me to also generate a **matching GitHub repository description + topic tags** (so it appears more in GitHub search results)?
-That will help attract **contributors + stars** much faster.
