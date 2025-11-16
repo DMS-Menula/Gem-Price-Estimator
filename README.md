@@ -170,7 +170,7 @@ If you’d like to add new gems, improve logic, or enhance UI feel free to fork 
 
 ## 📜 License
 
-Licensed under the **MIT License** © 2025 — DMS-Menula.
+Licensed under the **MIT License** © 2025 [DMS-Menula](https://github.com/DMS-Menula).
 Free to use, modify, and even sell gems with it 💎
 
 ---
