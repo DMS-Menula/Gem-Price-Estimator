@@ -20,11 +20,53 @@ document.addEventListener('DOMContentLoaded', async function () {
     const factorsList = document.getElementById('factorsList');
     const exportBtn = document.getElementById('exportBtn');
 
+    // new elements
+    const gemPreview = document.getElementById('gemPreview');
+    const gemIcon = document.getElementById('gemIcon');
+    const gemName = document.getElementById('gemName');
+    const gemBase = document.getElementById('gemBase');
+    const gemSearch = document.getElementById('gemSearch');
+    const resetBtn = document.getElementById('resetBtn');
+    const infoBtn = document.getElementById('infoBtn');
+    const infoModal = document.getElementById('infoModal');
+    const modalClose = document.getElementById('modalClose');
+    const sourcesList = document.getElementById('sourcesList');
+    const srcUpdate = document.getElementById('srcUpdate');
+    const shareBtn = document.getElementById('shareBtn');
+
+    // populate sources modal
+    if (window.dataSources) {
+        srcUpdate.textContent = dataSources.updated || dataSources.list[0];
+        sourcesList.innerHTML = '<ul>' + dataSources.list.map(s => `<li>${s}</li>`).join('') + '</ul>';
+    }
+
+    // populate select
     Object.keys(gemsData).forEach(gem => {
         const option = document.createElement('option');
         option.value = gem;
         option.textContent = gem;
         gemTypeSelect.appendChild(option);
+    });
+
+    // search filter for gem list
+    gemSearch.addEventListener('input', () => {
+        const q = gemSearch.value.toLowerCase().trim();
+        Array.from(gemTypeSelect.options).forEach(opt => {
+            if (!opt.value) return;
+            opt.hidden = q && !opt.value.toLowerCase().includes(q);
+        });
+    });
+
+    // preview when selection changes
+    gemTypeSelect.addEventListener('change', () => {
+        const val = gemTypeSelect.value;
+        if (!val) { gemPreview.classList.add('hidden'); return; }
+        const meta = gemsData[val] || {};
+        gemIcon.textContent = meta.icon || '💎';
+        gemName.textContent = val;
+        gemBase.textContent = meta.basePrice ? `$${meta.basePrice.toLocaleString()}/ct` : '';
+        gemPreview.classList.remove('hidden');
+        gemPreview.setAttribute('aria-hidden', 'false');
     });
 
     weightSlider.addEventListener('input', () => weightInput.value = weightSlider.value);
@@ -33,7 +75,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     usdToggle.addEventListener('change', function () {
         const isUSD = this.checked;
         currencyLabel.textContent = isUSD ? 'USD' : 'LKR';
-
         if (!result.classList.contains('hidden')) {
             convertExistingResult(isUSD);
         }
@@ -45,6 +86,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     exportBtn.addEventListener('click', exportReport);
+    resetBtn.addEventListener('click', resetForm);
+
+    infoBtn.addEventListener('click', () => infoModal.classList.remove('hidden'));
+    modalClose.addEventListener('click', () => infoModal.classList.add('hidden'));
+    infoModal.addEventListener('click', (ev) => { if (ev.target === infoModal) infoModal.classList.add('hidden'); });
+
+    shareBtn.addEventListener('click', () => {
+        const summary = `${gemTypeSelect.value} • ${weightInput.value}ct • ${lowPrice.textContent} - ${highPrice.textContent}`;
+        navigator.clipboard?.writeText(summary).then(() => alert('Summary copied to clipboard'));
+    });
 
     function calculatePrice() {
         const gemType = gemTypeSelect.value;
@@ -75,14 +126,32 @@ document.addEventListener('DOMContentLoaded', async function () {
         result.scrollIntoView({ behavior: 'smooth' });
     }
 
+    function animateNumber(element, start, end, isCurrency=true) {
+        const duration = 700;
+        const startTime = performance.now();
+        function tick(now) {
+            const t = Math.min(1, (now - startTime) / duration);
+            const val = start + (end - start) * t;
+            const fmt = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+            element.textContent = `${isCurrency ? '' : ''}${val.toLocaleString(undefined, fmt)}`;
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
     function displayPrices(lowUSD, highUSD, isUSD) {
         let low = isUSD ? lowUSD : lowUSD * exchangeRate;
         let high = isUSD ? highUSD : highUSD * exchangeRate;
 
         const fmt = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
-        lowPrice.textContent = `Low: ${low.toLocaleString(undefined, fmt)} ${isUSD ? 'USD' : 'LKR'}`;
-        highPrice.textContent = `High: ${high.toLocaleString(undefined, fmt)} ${isUSD ? 'USD' : 'LKR'}`;
+        animateNumber(lowPrice, 0, low);
+        animateNumber(highPrice, 0, high);
         currencyLabel.textContent = isUSD ? 'USD' : 'LKR';
+        // update text after animation ends so currency label is visible
+        setTimeout(() => {
+            lowPrice.textContent = `Low: ${low.toLocaleString(undefined, fmt)} ${isUSD ? 'USD' : 'LKR'}`;
+            highPrice.textContent = `High: ${high.toLocaleString(undefined, fmt)} ${isUSD ? 'USD' : 'LKR'}`;
+        }, 720);
     }
 
     function convertExistingResult(isUSD) {
@@ -125,5 +194,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         doc.text('Consult a certified gemologist for final valuation.', 20, 170);
 
         doc.save('Gem_Estimate_Report.pdf');
+    }
+
+    function resetForm() {
+        gemForm.reset();
+        gemTypeSelect.value = '';
+        gemPreview.classList.add('hidden');
+        result.classList.add('hidden');
+        gemSearch.value = '';
+        Array.from(gemTypeSelect.options).forEach(o => o.hidden = false);
     }
 });
