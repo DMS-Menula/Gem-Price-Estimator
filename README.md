@@ -5,7 +5,7 @@
 <h1 align="center">Gem Price Estimator 💎</h1>
  
 <p align="center">
-  <b>✨ Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems ✨</b><br>
+  <b>✨ Realistic Gemstone Valuation Tool for Sri Lankan & Global Gems ✨</b><br> 
   <a href="https://gemprice.vercel.app/">🌐 Live Demo</a> • 
   <a href="https://github.com/DMS-Menula/Gem-Price-Estimator/issues">🐛 Report Bug</a> • 
   <a href="https://github.com/DMS-Menula/Gem-Price-Estimator/contribute.md">💡 Contribute</a>
